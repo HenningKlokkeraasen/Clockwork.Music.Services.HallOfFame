@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Music.Services.HallOfFame", "Clockwork.Music.Services.HallOfFame\Clockwork.Music.Services.HallOfFame.csproj", "{8D2160F0-311E-4830-A0F7-4A41441237E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Music.Services.HallOfFame.Tests", "Clockwork.Music.Services.HallOfFame.Tests\Clockwork.Music.Services.HallOfFame.Tests.csproj", "{411E7703-2BEB-44F9-A5E6-E23F759FA8E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{4A179D73-AF9D-4210-9232-9CA11FFDE2BC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,10 @@ Global
 		{8D2160F0-311E-4830-A0F7-4A41441237E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D2160F0-311E-4830-A0F7-4A41441237E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D2160F0-311E-4830-A0F7-4A41441237E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{411E7703-2BEB-44F9-A5E6-E23F759FA8E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411E7703-2BEB-44F9-A5E6-E23F759FA8E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411E7703-2BEB-44F9-A5E6-E23F759FA8E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411E7703-2BEB-44F9-A5E6-E23F759FA8E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
