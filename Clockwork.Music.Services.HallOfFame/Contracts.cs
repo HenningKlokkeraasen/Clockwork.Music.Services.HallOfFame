@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Clockwork.Music.Services.HallOfFame
 {
@@ -18,13 +19,17 @@ namespace Clockwork.Music.Services.HallOfFame
 
     public interface IRepository<T>
     {
+        [NotNull]
         IList<T> GetAll();
+
         T Get(int id);
     }
 
     public interface ICache<T>
     {
         void Store(IList<T> items, string key);
+
+        [NotNull]
         IList<T> Get(string key);
     }
 }
