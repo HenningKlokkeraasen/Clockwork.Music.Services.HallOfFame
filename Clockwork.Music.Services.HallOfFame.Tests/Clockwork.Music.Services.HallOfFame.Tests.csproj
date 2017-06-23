@@ -70,10 +70,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caching_feature.cs" />
-    <Compile Include="Get_HOF_feature.cs" />
+    <Compile Include="DataTests\HallOfFameDataTests.cs" />
+    <Compile Include="FeatureTests\Caching_feature.cs" />
+    <Compile Include="FeatureTests\Get_HOF_feature.cs" />
     <Compile Include="LightBddSetup.cs" />
-    <Compile Include="Repo_feature.cs" />
+    <Compile Include="FeatureTests\Repo_feature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,7 @@
       <Name>Clockwork.Music.Services.HallOfFame</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

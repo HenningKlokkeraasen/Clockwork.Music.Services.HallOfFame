@@ -8,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 
-namespace Clockwork.Music.Services.HallOfFame.Tests
+namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
 {
     [FeatureDescription("")]
     public partial class Get_HOF_feature

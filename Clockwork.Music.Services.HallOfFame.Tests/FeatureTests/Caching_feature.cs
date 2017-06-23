@@ -8,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 
-namespace Clockwork.Music.Services.HallOfFame.Tests
+namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
 {
     [FeatureDescription(
         @"In order to avoid reading from repository every time

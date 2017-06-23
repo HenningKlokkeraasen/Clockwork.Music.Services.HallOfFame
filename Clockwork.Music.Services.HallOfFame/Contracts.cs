@@ -16,13 +16,11 @@ namespace Clockwork.Music.Services.HallOfFame
             InfoUrl = string.Empty
         };
     }
-
+    
     public interface IRepository<T>
     {
         [NotNull]
         IList<T> GetAll();
-
-        T Get(int id);
     }
 
     public interface ICache<T>
@@ -31,5 +29,13 @@ namespace Clockwork.Music.Services.HallOfFame
 
         [NotNull]
         IList<T> Get(string key);
+    }
+
+    public interface IService<T>
+    {
+        [NotNull]
+        IList<T> GetAll();
+
+        T Get(int id);
     }
 }

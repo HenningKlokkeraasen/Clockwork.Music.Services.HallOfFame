@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Clockwork.Music.Services.HallOfFame
 {
     public class HallOfFameRepository : IRepository<HallOfFame>
     {
-        public IList<HallOfFame> GetAll() => new List<HallOfFame>();
-
-        public HallOfFame Get(int id) => HallOfFame.Empty;
+        public IList<HallOfFame> GetAll() => new List<HallOfFame>
+        {
+            new HallOfFame
+            {
+                Id = 1,
+                Name = "Rock and Roll Hall of Fame",
+                InfoUrl = "https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame"
+            }
+        };
     }
 
-    public class HallOfFameService
+    public class HallOfFameService : IService<HallOfFame>
     {
         private readonly string _cacheKey;
         private readonly IRepository<HallOfFame> _repo;
