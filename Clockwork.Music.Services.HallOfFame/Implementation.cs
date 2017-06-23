@@ -28,8 +28,10 @@ namespace Clockwork.Music.Services.HallOfFame
         {
             var entries = _cache.Get(_cacheKey);
 
-            if (!entries.Any())
-                entries = _repo.GetAll();
+            if (entries.Any())
+                return entries;
+
+            entries = _repo.GetAll();
 
             if (entries.Any())
                 _cache.Store(entries, _cacheKey);

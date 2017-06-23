@@ -42,6 +42,7 @@ namespace Clockwork.Music.Services.HallOfFame.Tests
             given => a_nonempty_cache(),
             when => calling_GetAll(),
             then => it_does_not_get_from_repo(),
+            and => it_does_not_store_in_cache(),
             and => it_returns_result());
     }
 
