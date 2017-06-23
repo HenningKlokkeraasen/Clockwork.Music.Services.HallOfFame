@@ -82,12 +82,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Clockwork.Music.Services.HallOfFame\Clockwork.Music.Services.HallOfFame.csproj">
-      <Project>{8d2160f0-311e-4830-a0f7-4a41441237e0}</Project>
-      <Name>Clockwork.Music.Services.HallOfFame</Name>
+    <ProjectReference Include="..\Clockwork.Music.Services.HallOfFame.Core\Clockwork.Music.Services.HallOfFame.Core.csproj">
+      <Project>{04477a0b-ee35-4f92-b3f7-e9d1d8f89baf}</Project>
+      <Name>Clockwork.Music.Services.HallOfFame.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

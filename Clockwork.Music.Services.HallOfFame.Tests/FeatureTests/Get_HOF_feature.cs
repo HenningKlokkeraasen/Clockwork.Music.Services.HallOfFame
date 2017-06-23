@@ -30,7 +30,7 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
 
     public partial class Get_HOF_feature : FeatureFixture
     {
-        private Fixture _fixture;
+        private readonly Fixture _fixture = new Fixture();
         private Mock<ICache<HallOfFame>> _cacheMock;
         private Mock<IRepository<HallOfFame>> _repoMock;
         private HallOfFameService _sut;
@@ -42,7 +42,6 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
         [SetUp]
         public void SetUp()
         {
-            _fixture = new Fixture();
             _cacheMock = new Mock<ICache<HallOfFame>>();
             _repoMock = new Mock<IRepository<HallOfFame>>();
             _sut = new HallOfFameService(_repoMock.Object, _cacheMock.Object, It.IsAny<string>());

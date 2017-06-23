@@ -1,19 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Clockwork.Music.Services.HallOfFame
 {
+    public class SimpleDocumentDb : ISimpleDocumentDb
+    {
+        public T Read<T>(string filepath) => Parse<T>(ReadAllText(filepath));
+        private static string ReadAllText(string path) => File.ReadAllText(path);
+        private static T Parse<T>(string json) => JsonConvert.DeserializeObject<T>(json);
+    }
+
     public class HallOfFameRepository : IRepository<HallOfFame>
     {
-        public IList<HallOfFame> GetAll() => new List<HallOfFame>
+        private readonly ISimpleDocumentDb _documentDb;
+
+        public HallOfFameRepository(ISimpleDocumentDb documentDb)
         {
-            new HallOfFame
-            {
-                Id = 1,
-                Name = "Rock and Roll Hall of Fame",
-                InfoUrl = "https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame"
-            }
-        };
+            _documentDb = documentDb;
+        }
+
+        public IList<HallOfFame> GetAll() => _documentDb.Read<IList<HallOfFame>>("hallsoffame.json");
     }
 
     public class HallOfFameService : IService<HallOfFame>

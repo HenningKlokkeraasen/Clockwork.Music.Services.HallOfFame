@@ -48,7 +48,7 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
 
     public partial class Caching_feature : FeatureFixture
     {
-        private Fixture _fixture;
+        private Fixture _fixture = new Fixture();
         private string _cacheKey;
         private Mock<ICache<HallOfFame>> _cacheMock;
         private Mock<IRepository<HallOfFame>> _repoMock;
@@ -59,7 +59,6 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
         [SetUp]
         public void SetUp()
         {
-            _fixture = new Fixture();
             _cacheKey = _fixture.Create<string>();
             _cacheMock = new Mock<ICache<HallOfFame>>();
             _repoMock = new Mock<IRepository<HallOfFame>>();

@@ -16,7 +16,12 @@ namespace Clockwork.Music.Services.HallOfFame
             InfoUrl = string.Empty
         };
     }
-    
+
+    public interface ISimpleDocumentDb
+    {
+        T Read<T>(string filepath);
+    }
+
     public interface IRepository<T>
     {
         [NotNull]
