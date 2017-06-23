@@ -1,4 +1,4 @@
-# Hall of Fame Service
+# Music Hall of Fame Service
 
 Goal: Provide endpoints for music hall of fame inductees.
 

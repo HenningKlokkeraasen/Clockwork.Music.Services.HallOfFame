@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caching_feature.cs" />
+    <Compile Include="Get_HOF_feature.cs" />
     <Compile Include="LightBddSetup.cs" />
     <Compile Include="Repo_feature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -37,6 +37,6 @@ namespace Clockwork.Music.Services.HallOfFame
             return entries;
         }
 
-        public HallOfFame Get(int id) => throw new NotImplementedException();
+        public HallOfFame Get(int id) => GetAll().FirstOrDefault(hof => hof.Id == id);
     }
 }
