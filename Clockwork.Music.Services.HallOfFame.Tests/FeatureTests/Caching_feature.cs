@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Clockwork.Music.Services.HallOfFame.Core;
 using FluentAssertions;
 using LightBDD.Framework;
 using LightBDD.Framework.Scenarios.Extended;
@@ -50,29 +51,29 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
     {
         private Fixture _fixture = new Fixture();
         private string _cacheKey;
-        private Mock<ICache<HallOfFame>> _cacheMock;
-        private Mock<IRepository<HallOfFame>> _repoMock;
+        private Mock<ICache<IList<Hall>>>_cacheMock;
+        private Mock<IRepository<Hall>> _repoMock;
         private HallOfFameService _sut;
-        private IList<HallOfFame> _expected;
-        private IList<HallOfFame> _actual;
+        private IList<Hall> _expected;
+        private IList<Hall> _actual;
 
         [SetUp]
         public void SetUp()
         {
             _cacheKey = _fixture.Create<string>();
-            _cacheMock = new Mock<ICache<HallOfFame>>();
-            _repoMock = new Mock<IRepository<HallOfFame>>();
+            _cacheMock = new Mock<ICache<IList<Hall>>>();
+            _repoMock = new Mock<IRepository<Hall>>();
             _sut = new HallOfFameService(_repoMock.Object, _cacheMock.Object, _cacheKey);
-            _expected = _fixture.CreateMany<HallOfFame>().ToList();
+            _expected = _fixture.CreateMany<Hall>().ToList();
         }
 
-        private void an_empty_cache() => _cacheMock.Setup(c => c.Get(_cacheKey)).Returns(new List<HallOfFame>());
+        private void an_empty_cache() => _cacheMock.Setup(c => c.Get(_cacheKey)).Returns(new List<Hall>());
 
         private void a_nonempty_cache() => _cacheMock.Setup(c => c.Get(_cacheKey)).Returns(_expected);
 
         private void a_nonempty_repo() => _repoMock.Setup(r => r.GetAll()).Returns(_expected);
 
-        private void an_empty_repo() => _repoMock.Setup(r => r.GetAll()).Returns(new List<HallOfFame>());
+        private void an_empty_repo() => _repoMock.Setup(r => r.GetAll()).Returns(new List<Hall>());
 
         private void calling_GetAll() => _actual = _sut.GetAll();
 
@@ -84,7 +85,7 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
 
         private void it_stores_in_cache() => _cacheMock.Verify(c => c.Store(_expected, _cacheKey), Times.Once);
 
-        private void it_does_not_store_in_cache() => _cacheMock.Verify(c => c.Store(It.IsAny<IList<HallOfFame>>(), _cacheKey), Times.Never);
+        private void it_does_not_store_in_cache() => _cacheMock.Verify(c => c.Store(It.IsAny<IList<Hall>>(), _cacheKey), Times.Never);
 
         private void it_returns_result() => _actual.ShouldBeEquivalentTo(_expected);
 

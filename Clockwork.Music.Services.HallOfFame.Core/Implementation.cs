@@ -1,43 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Clockwork.Music.Services.HallOfFame
+namespace Clockwork.Music.Services.HallOfFame.Core
 {
-    public class SimpleDocumentDb : ISimpleDocumentDb
+    public class FileReader : IFileReader
     {
-        public T Read<T>(string filepath) => Parse<T>(ReadAllText(filepath));
-        private static string ReadAllText(string path) => File.ReadAllText(path);
-        private static T Parse<T>(string json) => JsonConvert.DeserializeObject<T>(json);
+        public string ReadAsString(string filepath) => File.ReadAllText(filepath);
     }
 
-    public class HallOfFameRepository : IRepository<HallOfFame>
+    public class JsonParser : IJsonParser
     {
-        private readonly ISimpleDocumentDb _documentDb;
+        public T Parse<T>(string json) => JsonConvert.DeserializeObject<T>(json);
+    }
 
-        public HallOfFameRepository(ISimpleDocumentDb documentDb)
+    public class HallOfFameRepository : IRepository<Hall>
+    {
+        private readonly IFileReader _fileReader;
+        private readonly IJsonParser _jsonParser;
+        private readonly string _filePath;
+
+        public HallOfFameRepository(IFileReader fileReader, IJsonParser jsonParser, string filePath)
         {
-            _documentDb = documentDb;
+            _fileReader = fileReader;
+            _jsonParser = jsonParser;
+            _filePath = filePath;
         }
 
-        public IList<HallOfFame> GetAll() => _documentDb.Read<IList<HallOfFame>>("hallsoffame.json");
+        public IList<Hall> GetAll()
+        {
+            var json = _fileReader.ReadAsString(_filePath);
+            var data = _jsonParser.Parse<IList<Hall>>(json);
+            return data;
+        }
+
+        public Hall Get(object id) => throw new NotImplementedException();
     }
 
-    public class HallOfFameService : IService<HallOfFame>
+    public class HallOfFameService : IService<Hall>
     {
         private readonly string _cacheKey;
-        private readonly IRepository<HallOfFame> _repo;
-        private readonly ICache<HallOfFame> _cache;
+        private readonly IRepository<Hall> _repo;
+        private readonly ICache<IList<Hall>> _cache;
 
-        public HallOfFameService(IRepository<HallOfFame> repo, ICache<HallOfFame> cache, string cacheKey)
+        public HallOfFameService(IRepository<Hall> repo, ICache<IList<Hall>> cache, string cacheKey)
         {
             _repo = repo;
             _cache = cache;
             _cacheKey = cacheKey;
         }
 
-        public IList<HallOfFame> GetAll()
+        public IList<Hall> GetAll()
         {
             var entries = _cache.Get(_cacheKey);
 
@@ -52,6 +67,8 @@ namespace Clockwork.Music.Services.HallOfFame
             return entries;
         }
 
-        public HallOfFame Get(int id) => GetAll().FirstOrDefault(hof => hof.Id == id);
+        public Hall Get(object id) => !(id is int)
+            ? throw new ArgumentException("id must be int")
+            : GetAll().FirstOrDefault(hof => hof.Id == (int) id);
     }
 }

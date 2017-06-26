@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Clockwork.Music.Services.HallOfFame
+namespace Clockwork.Music.Services.HallOfFame.Core
 {
-    public class HallOfFame
+    public class Hall
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string InfoUrl { get; set; }
 
-        public static HallOfFame Empty => new HallOfFame
+        public static Hall Empty => new Hall
         {
             Id = -1,
             Name = string.Empty,
@@ -17,23 +17,30 @@ namespace Clockwork.Music.Services.HallOfFame
         };
     }
 
-    public interface ISimpleDocumentDb
+    public interface IFileReader
     {
-        T Read<T>(string filepath);
+        string ReadAsString(string filepath);
+    }
+    
+    public interface IJsonParser
+    {
+        T Parse<T>(string json);
     }
 
     public interface IRepository<T>
     {
         [NotNull]
         IList<T> GetAll();
+
+        T Get(object id);
     }
 
     public interface ICache<T>
     {
-        void Store(IList<T> items, string key);
+        void Store(T obj, string key);
 
         [NotNull]
-        IList<T> Get(string key);
+        T Get(string key);
     }
 
     public interface IService<T>
@@ -41,6 +48,6 @@ namespace Clockwork.Music.Services.HallOfFame
         [NotNull]
         IList<T> GetAll();
 
-        T Get(int id);
+        T Get(object id);
     }
 }
