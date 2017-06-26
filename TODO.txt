@@ -1,0 +1,4 @@
+* Change to read data from https://raw.githubusercontent.com/HenningKlokkeraasen/Clockwork.Music.Services.HallOfFame/master/Data/hallsoffame.json
+* Add Inductees
+* Add Web API
+* Add more data
