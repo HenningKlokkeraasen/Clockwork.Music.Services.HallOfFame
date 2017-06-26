@@ -39,15 +39,15 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
             _fileReaderMock = new Mock<IFileReader>();
             _jsonParserMock = new Mock<IJsonParser>();
             _fileReaderMock.Setup(d => d.ReadAsString(_filename)).Returns(_json);
-            _jsonParserMock.Setup(j => j.Parse<IList<Hall>>(_json))
-                .Returns(_fixture.CreateMany<Hall>().ToList());
+            _jsonParserMock.Setup(j => j.Parse<IList<PublicContracts.HallOfFame>>(_json))
+                .Returns(_fixture.CreateMany<PublicContracts.HallOfFame>().ToList());
             _sut = new HallOfFameRepository(_fileReaderMock.Object, _jsonParserMock.Object, _filename);
         }
 
-        private IList<Hall> _actual;
+        private IList<PublicContracts.HallOfFame> _actual;
 
         private void calling_GetAll() => _actual = _sut.GetAll();
 
-        private void it_should_return_items_of_type() => _actual.Should().AllBeOfType<Hall>();
+        private void it_should_return_items_of_type() => _actual.Should().AllBeOfType<PublicContracts.HallOfFame>();
     }
 }

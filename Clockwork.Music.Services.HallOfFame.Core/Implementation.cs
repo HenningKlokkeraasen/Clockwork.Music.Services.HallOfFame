@@ -16,7 +16,7 @@ namespace Clockwork.Music.Services.HallOfFame.Core
         public T Parse<T>(string json) => JsonConvert.DeserializeObject<T>(json);
     }
 
-    public class HallOfFameRepository : IRepository<Hall>
+    public class HallOfFameRepository : IRepository<PublicContracts.HallOfFame>
     {
         private readonly IFileReader _fileReader;
         private readonly IJsonParser _jsonParser;
@@ -29,30 +29,30 @@ namespace Clockwork.Music.Services.HallOfFame.Core
             _filePath = filePath;
         }
 
-        public IList<Hall> GetAll()
+        public IList<PublicContracts.HallOfFame> GetAll()
         {
             var json = _fileReader.ReadAsString(_filePath);
-            var data = _jsonParser.Parse<IList<Hall>>(json);
+            var data = _jsonParser.Parse<IList<PublicContracts.HallOfFame>>(json);
             return data;
         }
 
-        public Hall Get(object id) => throw new NotImplementedException();
+        public PublicContracts.HallOfFame Get(object id) => throw new NotImplementedException();
     }
 
-    public class HallOfFameService : IService<Hall>
+    public class HallOfFameService : IService<PublicContracts.HallOfFame>
     {
         private readonly string _cacheKey;
-        private readonly IRepository<Hall> _repo;
-        private readonly ICache<IList<Hall>> _cache;
+        private readonly IRepository<PublicContracts.HallOfFame> _repo;
+        private readonly ICache<IList<PublicContracts.HallOfFame>> _cache;
 
-        public HallOfFameService(IRepository<Hall> repo, ICache<IList<Hall>> cache, string cacheKey)
+        public HallOfFameService(IRepository<PublicContracts.HallOfFame> repo, ICache<IList<PublicContracts.HallOfFame>> cache, string cacheKey)
         {
             _repo = repo;
             _cache = cache;
             _cacheKey = cacheKey;
         }
 
-        public IList<Hall> GetAll()
+        public IList<PublicContracts.HallOfFame> GetAll()
         {
             var entries = _cache.Get(_cacheKey);
 
@@ -67,7 +67,7 @@ namespace Clockwork.Music.Services.HallOfFame.Core
             return entries;
         }
 
-        public Hall Get(object id) => !(id is int)
+        public PublicContracts.HallOfFame Get(object id) => !(id is int)
             ? throw new ArgumentException("id must be int")
             : GetAll().FirstOrDefault(hof => hof.Id == (int) id);
     }

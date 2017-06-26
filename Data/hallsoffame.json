@@ -2,6 +2,19 @@
   {
     "id": 1,
     "name": "Rock and Roll Hall of Fame",
-    "infoUrl": "https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame"
+    "infoUrl": "https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame",
+    "yearEstabllished": 1983 
+  },
+  {
+    "id": 2,
+    "name": "Country Music Hall of Fame and Museum",
+    "infoUrl": "https://en.wikipedia.org/wiki/Country_Music_Hall_of_Fame_and_Museum",
+    "yearEstabllished": 1964
+  },
+  {
+    "id": 3,
+    "name": "Blues Hall of Fame",
+    "infoUrl": "https://en.wikipedia.org/wiki/Blues_Hall_of_Fame",
+    "yearEstabllished": 1980
   }
 ]

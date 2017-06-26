@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using Clockwork.Music.Services.HallOfFame.Core;
 using FluentAssertions;
@@ -13,23 +12,15 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.DataTests
         [Test]
         public void GetAll_Should_Return_Correct_Data()
         {
-            var expected = new List<Hall>
-            {
-                new Hall
-                {
-                    Id = 1,
-                    Name = "Rock and Roll Hall of Fame",
-                    InfoUrl = "https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame"
-                }
-            };
             var sut = new HallOfFameRepository(new FileReader(), new JsonParser(), BuildPath());
             
             var actual = sut.GetAll();
 
+            Console.WriteLine("ID EST. NAME (URL)");
             foreach (var hall in actual)
-                Console.WriteLine($"{hall.Id} {hall.Name} {hall.InfoUrl}");
+                Console.WriteLine($"{hall.Id.ToString("00")} {hall.YearEstabllished.ToString("0000")} {hall.Name} ({hall.InfoUrl})");
 
-            actual.ShouldBeEquivalentTo(expected);
+            actual.Should().AllBeOfType<PublicContracts.HallOfFame>();
         }
 
         // Assumes currentContextTestDirectory is \bin\debug

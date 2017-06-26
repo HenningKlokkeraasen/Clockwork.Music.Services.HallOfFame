@@ -32,23 +32,23 @@ namespace Clockwork.Music.Services.HallOfFame.Tests.FeatureTests
     public partial class Get_HOF_feature : FeatureFixture
     {
         private readonly Fixture _fixture = new Fixture();
-        private Mock<ICache<IList<Hall>>> _cacheMock;
-        private Mock<IRepository<Hall>> _repoMock;
+        private Mock<ICache<IList<PublicContracts.HallOfFame>>> _cacheMock;
+        private Mock<IRepository<PublicContracts.HallOfFame>> _repoMock;
         private HallOfFameService _sut;
-        private IList<Hall> _list;
+        private IList<PublicContracts.HallOfFame> _list;
         private int _id;
-        private Hall _expected;
-        private Hall _actual;
+        private PublicContracts.HallOfFame _expected;
+        private PublicContracts.HallOfFame _actual;
 
         [SetUp]
         public void SetUp()
         {
-            _cacheMock = new Mock<ICache<IList<Hall>>>();
-            _repoMock = new Mock<IRepository<Hall>>();
+            _cacheMock = new Mock<ICache<IList<PublicContracts.HallOfFame>>>();
+            _repoMock = new Mock<IRepository<PublicContracts.HallOfFame>>();
             _sut = new HallOfFameService(_repoMock.Object, _cacheMock.Object, It.IsAny<string>());
-            _list = _fixture.CreateMany<Hall>().ToList();
+            _list = _fixture.CreateMany<PublicContracts.HallOfFame>().ToList();
             _id = _fixture.Create<int>();
-            _expected = new Hall {Id = _id};
+            _expected = new PublicContracts.HallOfFame {Id = _id};
         }
 
         private void a_list_of_items() => _cacheMock.Setup(c => c.Get(It.IsAny<string>())).Returns(_list);

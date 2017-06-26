@@ -86,6 +86,10 @@
       <Project>{04477a0b-ee35-4f92-b3f7-e9d1d8f89baf}</Project>
       <Name>Clockwork.Music.Services.HallOfFame.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Clockwork.Music.Services.HallOfFame.PublicContracts\Clockwork.Music.Services.HallOfFame.PublicContracts.csproj">
+      <Project>{3dcfe336-c2d5-4371-969f-96466f341ece}</Project>
+      <Name>Clockwork.Music.Services.HallOfFame.PublicContracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
